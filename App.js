@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Button } from 'react-native';
+import AnimatedAlert from 'react-native-sweet-alert'; // Import your package
 
 export default function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Button title="Show Alert" onPress={() => setIsVisible(true)} />
+      <AnimatedAlert
+        isVisible={isVisible}
+        type="success"
+        title="Success!"
+        message="Your action was successful."
+        actionText="OK"
+        onAction={() => setIsVisible(false)}
+      />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
